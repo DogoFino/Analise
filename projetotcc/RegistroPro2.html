@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Tela de Registro de Produtos</title>
+    <link rel="stylesheet" href="Registropro.css">
+    <script src="RegistroPro.js"></script>
+</head>
+<body>
+    <div id="cabe">    
+        <img src="./images/logotool.png" id="logo">
+        <img src="./images/logo_nome.png" alt="Overlay Image" id="logo_nome">
+        <img src="./images/perfil.png" id="perfil">
+    </div>
+    <br><br><br><br>
+    <center>
+        <div class="caixa">
+            <img src="./images/logok.png" class="lolo">
+            <h1 class="titu">Cadastro de Produtos</h1>
+            <div class="inputs">
+                <form class="infos">
+                    <div class="container">
+                        <div id="pri">
+                            <center>
+                                <h1 id="h2">Preço do Produto</h1>
+                                <input type="text" id="text">
+                            </center>
+                        </div>
+                        <div>
+                            <center>
+                                <h1 id="h2">Nome do Produto</h1>
+                                <input type="text" id="text">
+                            </center>
+                        </div>
+                        <div>  
+                            <center>
+                                <h1 id="h2">Quantidade</h1>
+                                <input type="text" id="text">
+                            </center>
+                        </div>
+                        <div id="foto">
+                            <center>
+                                <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" style="display: none;"></p>
+                                <h1><p id="h2"><label for="file" style="cursor: pointer;">Upload Image</label></p></h1>
+                                <p><img id="output" width="500" height="300" /></p>
+                                <button type="submit" id="botao">Enviar</button>
+                            </center>
+                        </div>
+                        <div>
+                            <center>
+                                <h1 id="h2">Classificação</h1>
+                                <input type="text" id="text">
+                            </center> 
+                        </div>
+                        <div id="descri">
+                            <center>
+                                <h1 id="h2">Descrição</h1>
+                                <textarea id="text1"></textarea>
+                            </center>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </center>
+</body>
+</html>

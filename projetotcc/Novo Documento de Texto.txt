@@ -1,0 +1,197 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Tempo de geração: 08/08/2024 às 00:05
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Banco de dados: `felipe`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `carrinho`
+--
+
+CREATE TABLE `carrinho` (
+  `ID_CARRINHO` int(11) NOT NULL,
+  `ID_COMPRA` int(11) DEFAULT NULL,
+  `FORMA_PAGAMENTO` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `classificacao`
+--
+
+CREATE TABLE `classificacao` (
+  `ID_CLASSIFICACAO` int(11) NOT NULL,
+  `NOME_CLASSIFICACAO` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `compra`
+--
+
+CREATE TABLE `compra` (
+  `ID_COMPRA` int(11) NOT NULL,
+  `DATA_COMPRA` date DEFAULT NULL,
+  `ID_PRODUTO` int(11) DEFAULT NULL,
+  `CPF` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `estoque`
+--
+
+CREATE TABLE `estoque` (
+  `ID_ESTOQUE` int(11) NOT NULL,
+  `QUANTIDADE` int(11) DEFAULT NULL,
+  `ID_PRODUTO` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `produto`
+--
+
+CREATE TABLE `produto` (
+  `ID_PRODUTO` int(11) NOT NULL,
+  `ID_ESTOQUE` int(11) DEFAULT NULL,
+  `PRECO_P` decimal(10,2) NOT NULL,
+  `NOME_P` varchar(255) NOT NULL,
+  `CLASSIFICACAO_P` varchar(255) NOT NULL,
+  `DESCRICAO` text NOT NULL,
+  `IMAGE` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `CPF` int(11) NOT NULL,
+  `NOME` varchar(100) NOT NULL,
+  `TELEFONE` varchar(20) NOT NULL,
+  `SENHA` varchar(50) NOT NULL,
+  `EMAIL` varchar(100) NOT NULL,
+  `ID_USUARIO` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+--
+-- Despejando dados para a tabela `usuario`
+--
+
+INSERT INTO `usuario` (`CPF`, `NOME`, `TELEFONE`, `SENHA`, `EMAIL`, `ID_USUARIO`) VALUES
+(2147483647, 'felipe', '988425675', 'bora', 'cmfelipe649@gmail.com', 1);
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices de tabela `carrinho`
+--
+ALTER TABLE `carrinho`
+  ADD PRIMARY KEY (`ID_CARRINHO`),
+  ADD KEY `ID_COMPRA` (`ID_COMPRA`);
+
+--
+-- Índices de tabela `classificacao`
+--
+ALTER TABLE `classificacao`
+  ADD PRIMARY KEY (`ID_CLASSIFICACAO`);
+
+--
+-- Índices de tabela `compra`
+--
+ALTER TABLE `compra`
+  ADD PRIMARY KEY (`ID_COMPRA`),
+  ADD KEY `pk_id_produto` (`ID_PRODUTO`),
+  ADD KEY `pk_CPF` (`CPF`),
+  ADD KEY `CPF` (`CPF`);
+
+--
+-- Índices de tabela `estoque`
+--
+ALTER TABLE `estoque`
+  ADD PRIMARY KEY (`ID_ESTOQUE`),
+  ADD KEY `ID_PRODUTO` (`ID_PRODUTO`);
+
+--
+-- Índices de tabela `produto`
+--
+ALTER TABLE `produto`
+  ADD PRIMARY KEY (`ID_PRODUTO`),
+  ADD KEY `ID_ESTOQUE` (`ID_ESTOQUE`);
+
+--
+-- Índices de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`ID_USUARIO`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `ID_USUARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Restrições para tabelas despejadas
+--
+
+--
+-- Restrições para tabelas `carrinho`
+--
+ALTER TABLE `carrinho`
+  ADD CONSTRAINT `carrinho_ibfk_1` FOREIGN KEY (`ID_COMPRA`) REFERENCES `compra` (`ID_COMPRA`);
+
+--
+-- Restrições para tabelas `compra`
+--
+ALTER TABLE `compra`
+  ADD CONSTRAINT `pk_id_produto` FOREIGN KEY (`ID_PRODUTO`) REFERENCES `produto` (`ID_PRODUTO`);
+
+--
+-- Restrições para tabelas `estoque`
+--
+ALTER TABLE `estoque`
+  ADD CONSTRAINT `estoque_ibfk_1` FOREIGN KEY (`ID_PRODUTO`) REFERENCES `produto` (`ID_PRODUTO`);
+
+--
+-- Restrições para tabelas `produto`
+--
+ALTER TABLE `produto`
+  ADD CONSTRAINT `ID_ESTOQUE` FOREIGN KEY (`ID_ESTOQUE`) REFERENCES `estoque` (`ID_ESTOQUE`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

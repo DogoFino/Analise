@@ -1,0 +1,194 @@
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background-image: url('./images/background.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+  }
+  
+  #cabe {
+    background-color: #475D7F;
+    height: 150px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 160px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 16px;
+    margin-top: 20px;
+  }
+  
+  #logo_nome {
+    position: absolute;
+    top: 27px;
+    left: -50px;
+    width: 500px;
+    height: 100px;
+    object-fit: cover;
+    z-index: 1;
+  }
+  
+  @media screen and (max-width: 768px) {
+
+  
+    #logo {
+      position: relative;
+      width: 100px;
+      height: auto;
+      margin: 0;
+    }
+  
+    #logo_nome {
+      position: relative;
+      width: 100px;
+      height: auto;
+      margin: 0;
+    }
+  
+    #cabe {
+      height: 100px;
+    }
+  }
+  
+  #perfil {
+      width: 05%;
+      position: absolute;
+      margin-left: 100%;
+  
+  }
+
+  .lolo {
+    position: absolute;
+    margin-top: -14%;
+    margin-left: -155%;
+    width: 50%;
+  }
+
+  .inputs {
+    position: relative;
+    top: -120px;
+    right: 20%;
+    border: none;
+        border-bottom: 2px solid white;
+        background: none;
+        outline: none;
+        box-shadow: none;
+        color: white;
+  }
+
+  .caixa {
+    background-color: #475D7F;
+    position: relative;
+    height: 500px;
+    width: 500px;
+  }
+
+  .escrita {
+    color: rgba(255, 255, 255, 0.808);
+    position: absolute;
+    margin-left: 33%;
+    margin-top: 30%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 120%;
+  }
+
+  .email {
+    position: absolute;
+    margin-left: -20%;
+    margin-top: 40%;
+    width: 75%;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+        border-bottom: 2px solid white;
+        background: none;
+        outline: none;
+        box-shadow: none;
+        color: white;
+  }
+
+  .escrita2 {
+    color: rgba(255, 255, 255, 0.808);
+    position: absolute;
+    margin-left: 34%;
+    margin-top: 55%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 120%;
+  }
+
+  .senha2 {
+    position: absolute;
+    margin-left: -20%;
+    margin-top: 65%;
+    width: 75%;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+        border-bottom: 2px solid white;
+        background: none;
+        outline: none;
+        box-shadow: none;
+        color: white;
+  }
+
+  .button {
+    position: relative;
+    right: 35%;
+    top: -50px;
+    border-radius: 5px;
+    border: none;
+    width: 200px;
+    height: 50px;
+    background-color: #5c79a5;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 120%;
+  }
+
+  .button:hover {
+    background-color: #404f64de;
+  }
+
+  .fundo {
+    color: rgba(255, 255, 255, 0.808);
+    position: absolute;
+    margin-left: -07%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 120%;
+  }
+
+  .fundao {
+    position: absolute;
+    margin-top: 70%;
+    margin-left: 30%;
+    width: 600px;
+    height: 200px;
+  }
+
+  .cada {
+    position: absolute;
+    margin-top: 03,5%;
+    margin-left: 21%;
+    font-size: 120%;
+  }
+
+  .esq {
+    position: absolute;
+    margin-top: 9%;
+    font-size: 120%;
+  }

@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    color:rgba(255, 255, 255, 0.801);
+}
+
+body {
+    background-image: url('./images/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+.cabeçalho {
+    background-color: #475D7F;
+    display: flex;
+    padding-bottom: 7%;
+}
+
+.saida {
+    position: absolute;
+    margin-left: 2010px;
+    margin-top: 1.5%;
+    padding: 25px;
+    border-radius: 100px;
+    background-color: #5c79a5;
+    color:rgba(255, 255, 255, 0.801);
+    border-style: none;
+    font-size: 25px;
+}
+
+.saida:hover {
+    background-color: #475D7F;
+}
+
+.embaixo-cabe {
+    text-align: center;
+}
+
+.logo {
+    position: absolute;
+    width: 18%;
+}
+
+.itens1 {
+    position: absolute;
+    margin-left: 30%;
+    margin-top: 3%;
+    font-size: 30px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.801);
+}
+
+.card {
+    margin: 10px;
+    padding: 10px;
+    background-color:#475D7F;
+    opacity: 0.9;
+    border-radius: 5px;
+    text-align: center;
+    width: 22%; /* Ajustar largura de acordo com o número de cards por linha */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+  
+  /* Efeito hover nos cards */
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Imagem do sorvete */
+  .card img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover; /* Recortar imagem para caber na área */
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+  
+  /* Nome do sabor */
+  .card p {
+    font-weight: bold;
+    margin: 0;
+  }
+
+  
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap; /* Para permitir que os cards quebrem para a próxima linha */
+    gap: 10px; /* Espaço entre os cards */
+}
+
+
