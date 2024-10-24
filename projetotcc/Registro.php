@@ -35,11 +35,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Registropro.css">
+    <link rel="stylesheet" href="StyleR.css">
     <title>Tela Registro</title>
     
 </head>
 
+<style>
+
+.inputs {
+  width: 90%;
+  height: 30%;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: none;
+  border-bottom: 2px solid white;
+  background: none;
+  outline: none;
+  box-shadow: none;
+  color: white;
+}
+</style>
     <script>
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -65,11 +80,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
 
 <body>
-    
-<div class="container">
     <div id="lgo">
         <a href="Index.html"><img src="./images/logok2.png" class="lolo"></a> 
     </div>
+    
+<div class="container">
     <form action="Registro.php" class="form" method="POST">
         <div class="lado_e">
             <h1 class="escrita">Nome</h1>

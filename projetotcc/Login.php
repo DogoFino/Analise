@@ -1,5 +1,7 @@
 <?php 
 session_start();
+$logado = false; // Inicializa como falso
+$email = "";
 
 if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha'])) {
     include_once('config.php');
@@ -14,28 +16,30 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha']
     if ($stmt->execute()) {
         $result = $stmt->get_result();
 
-        if ($result->num_rows > 0) {
+        if ($result->num_rows >= 1) {
             $row = $result->fetch_assoc();
 
             // Verifica o tipo de usuário
+            $_SESSION['email'] = $email; // Armazena o email na sessão
+            $logado = true; // Define como logado
+
             if ($row['tipo'] == 1) {
                 // Login válido para administrador, redireciona para adm.php
                 header("Location: adm.php");
-                exit();
             } else {
                 // Login válido para outro tipo de usuário, redireciona para home
-                header("Location: Login.php");
-                exit();
+                header("Location: sistema.php");
             }
+            exit();
         } else {
             // Mensagem de erro se o login falhar
             $_SESSION['error'] = "Email ou senha inválidos.";
-            header("Location: login.php"); // Redireciona para a página de login
+            header("Location: login.php");
             exit();
         }
     } else {
         $_SESSION['error'] = "Erro ao executar a consulta.";
-        header("Location: login.php"); // Redireciona para a página de login
+        header("Location: login.php");
         exit();
     }
 }
@@ -54,7 +58,7 @@ if (isset($_SESSION['error'])) {
     <link rel="stylesheet" href="LoginP.css">
 
 <style>
-    body {
+  body {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -140,12 +144,13 @@ if (isset($_SESSION['error'])) {
     top: -120px;
     right: 20%;
     border: none;
-        border-bottom: 2px solid white;
-        background: none;
-        outline: none;
-        box-shadow: none;
-        color: white;
+    border-bottom: 2px solid white;
+    background: none;
+    outline: none;
+    box-shadow: none;
+    color: white;
   }
+  
 
   .caixa {
     background-color: #475D7F;
@@ -260,7 +265,7 @@ if (isset($_SESSION['error'])) {
         <div class="caixa">
             <a href="Index.html"><img src="./images/logok2.png" class="lolo"></a>
       <div class="inputs">
-      <form action="Login.php" class="form" method="POST">
+      <form action="" class="form" method="POST">
                 <h1 class="escrita">Email</h1>
                 <input type="text" class="email" name="email" class="inputs">
                     <h1 class="escrita2">Senha</h1>

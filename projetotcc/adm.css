@@ -1,0 +1,171 @@
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.808);
+  }
+  
+  body {
+    background-image: url('./images/background.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+  }
+
+  .volta{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.808);
+    position: relative;
+    top: 16px;
+    left: 200px;
+  }
+
+  .saida {
+    position: absolute;
+    left: 93%;
+    top: 3%;
+    padding: 20px;
+    border-radius: 100px;
+    background-color: #5c79a5;
+    color:rgba(255, 255, 255, 0.801);
+    border-style: none;
+    font-size: 25px;
+}
+
+.saida:hover {
+    background-color: #475D7F;
+}
+
+.cabecalho {
+    background-color: #475D7F;
+    display: flex;
+    padding-bottom: 2%;
+    align-items: center;
+    text-align: center;
+}
+
+.caixa{
+    background-color: #475D7F;
+    width: 15%;
+    position: relative;
+    top: 70px;
+    left: 50px;
+}
+
+.botao1{
+    width: 259px;
+    background-color: #5c79a5;
+    color: rgba(255, 255, 255, 0.801);
+    border: none;
+    position: relative;
+}
+
+.botao1:hover {
+    background-color: #475D7F;
+}
+
+.embaixo-cabe{
+    position: relative;
+    left: 30px;
+    top: 20px;
+}
+
+.botao2{
+    width: 259px;
+    background-color: #5c79a5;
+    color: rgba(255, 255, 255, 0.801);
+    border: none;
+    position: relative;
+    top: 5px;
+}
+
+.botao2:hover {
+    background-color: #475D7F;
+}
+
+.botao3{
+    width: 259px;
+    background-color: #5c79a5;
+    color: rgba(255, 255, 255, 0.801);
+    border: none;
+    position: relative;
+    top: 10px;
+}
+
+.botao3:hover {
+    background-color: #475D7F;
+}
+
+.box-search {
+    position: absolute;
+    left: 600px;
+    top: 200px;
+    display: flex;
+    justify-content: center;
+    gap: 0.1%;
+}
+
+.table-bg {
+    border-radius: 15px 15px 0 0;
+}
+
+#botao4 {
+    background-color: #475D7F;
+    color: rgba(255, 255, 255, 0.801);
+    border: none;
+    width: 800px;
+    border-radius: 20px;
+}
+
+#tabelaa {
+    padding: 05%;
+    width: 100%;
+    font-size: 20px;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.negocio {
+    background-color: rgb(43, 43, 252);
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.negocio:hover {
+    background-color: rgb(36, 36, 188);
+}
+
+.delet {
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    width: 50px;
+    position: relative;
+    left: 10px;
+}
+
+.delet:hover {
+    background-color: rgb(189, 0, 0);
+}
+
+.nomes {
+    position: relative;
+    top: -20px;
+}
+
+td {
+    width: 50px;
+    padding: 5px; /* Aumenta o espaçamento interno das células */
+}
+
+.saida2 {
+    padding: 20px;
+    border-radius: 100px;
+    background-color: #5c79a5;
+    color:rgba(255, 255, 255, 0.801);
+    border-style: none;
+    font-size: 25px;
+}
