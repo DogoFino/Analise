@@ -2,7 +2,7 @@
 session_start();
 
 if (empty($_SESSION['cpf'])) {
-    header("location: login.php");
+    header("Location: login.php");
     exit();
 }
 
@@ -10,40 +10,40 @@ if (empty($_SESSION['cpf'])) {
 include 'config.php'; // Certifique-se de que este arquivo contém a configuração da conexão
 
 // Verifica se o usuário está logado e pega o CPF
-$logado = isset($_SESSION['cpf']);
-$cpf = $logado ? $_SESSION['cpf'] : null;
+$cpf = $_SESSION['cpf'];
 
-if ($cpf) {
-    // Prepara a consulta SQL
-    $stmt = $conexao->prepare("SELECT * FROM usuario WHERE cpf = ?");
-    $stmt->bind_param("s", $cpf); // 's' indica que o parâmetro é uma string
+// Prepara a consulta SQL para buscar os dados do usuário logado
+$stmt = $conexao->prepare("SELECT * FROM usuario WHERE cpf = ?");
+$stmt->bind_param("s", $cpf);
 
-    // Executa a consulta
-    if ($stmt->execute()) {
-        $result = $stmt->get_result();
+if ($stmt->execute()) {
+    $result = $stmt->get_result();
 
-        // Verifica se algum usuário foi encontrado
-        if ($result->num_rows > 0) {
-            $usuario = $result->fetch_assoc(); // Obtém os dados do usuário
-        } else {
-            echo "Nenhum usuário encontrado com esse CPF.";
+    // Verifica se algum usuário foi encontrado
+    if ($result->num_rows > 0) {
+        $usuario = $result->fetch_assoc(); // Obtém os dados do usuário
+
+        // Verifica o tipo de usuário e redireciona se for tipo 0
+        if ($usuario['tipo'] == 0) {
+            header("Location: sistema.php");
+            exit();
         }
     } else {
-        echo "Erro ao executar a consulta: " . $stmt->error;
+        echo "Nenhum usuário encontrado com esse CPF.";
     }
-    $stmt->close(); // Fecha o statement
 } else {
-    echo "Usuário não está logado.";
+    echo "Erro ao executar a consulta: " . $stmt->error;
 }
+$stmt->close();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="adm.css">
-    <title>Document</title>
+    <title>Painel do Administrador</title>
 </head>
 <body>
     <div class="cabecalho">

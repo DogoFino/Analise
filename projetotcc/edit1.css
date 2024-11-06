@@ -1,0 +1,116 @@
+/* Definindo o estilo geral da página */
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.808);
+    background-image: url('./images/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+/* Centralizando o conteúdo */
+.box {
+    width: 60%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+legend {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo dos rótulos (labels) */
+label {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Estilo dos campos de entrada */
+input[type="text"], select, input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Estilo do botão de envio */
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Estilo do link para voltar */
+.saida {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.saida:hover {
+    text-decoration: underline;
+}
+
+/* Estilo de elementos de erro ou mensagem */
+.error {
+    color: red;
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Estilo geral de todos os inputs e selects */
+input[type="text"], select, input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box; /* Garante que a largura e altura incluam padding e borda */
+}
+
+/* Para garantir que o botão de envio também não ultrapasse a largura da div */
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box; /* Garante que o botão também esteja dentro da div */
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}

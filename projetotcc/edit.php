@@ -1,198 +1,136 @@
 <?php
 include_once('config.php');
-
 session_start();
 
-// Verifica se o usuário está logado e pega o email
-$logado = isset($_SESSION['email']);
-$email = $logado ? $_SESSION['email'] : null;
+if (empty($_SESSION['cpf'])) {
+    header("Location: login.php");
+    exit();
+}
 
-// Verifica se o parâmetro 'email' foi enviado via GET
+// Inclui o arquivo de configuração para conexão com o banco de dados
+include 'config.php'; // Certifique-se de que este arquivo contém a configuração da conexão
+
+// Verifica se o usuário está logado e pega o CPF
+$cpf = $_SESSION['cpf'];
+
+// Prepara a consulta SQL para buscar os dados do usuário logado
+$stmt = $conexao->prepare("SELECT * FROM usuario WHERE cpf = ?");
+$stmt->bind_param("s", $cpf);
+
+if ($stmt->execute()) {
+    $result = $stmt->get_result();
+
+    // Verifica se algum usuário foi encontrado
+    if ($result->num_rows > 0) {
+        $usuario = $result->fetch_assoc(); // Obtém os dados do usuário
+
+        // Verifica o tipo de usuário e redireciona se for tipo 0
+        if ($usuario['tipo'] == 0) {
+            header("Location: sistema.php");
+            exit();
+        }
+    } else {
+        echo "Nenhum usuário encontrado com esse CPF.";
+    }
+} else {
+    echo "Erro ao executar a consulta: " . $stmt->error;
+}
+$stmt->close();
+
 if (isset($_GET['email'])) {
-    // Sanitiza o email para evitar injeção de SQL
-    $email = mysqli_real_escape_string($conexao, $_GET['email']);
+    $email = $_GET['email'];
 
-    // Prepara a consulta SQL utilizando prepared statements
-    $sql = "SELECT * FROM usuario WHERE email=?";
-    $stmt = $conexao->prepare($sql);
+    $stmt = $conexao->prepare("SELECT * FROM usuario WHERE email = ?");
     $stmt->bind_param("s", $email);
 
-    // Executa a consulta
     if ($stmt->execute()) {
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            // Obtém os dados do usuário
             $user_data = $result->fetch_assoc();
 
-            // Atribui os valores aos campos do formulário
             $nome = $user_data['nome'];
             $email = $user_data['email'];
-            // ... outros campos ...
+            $senha = $user_data['senha'];
+            $cpf = $user_data['cpf'];
+            $telefone = $user_data['telefone'];
+            $tipo = $user_data['tipo'];
         } else {
             echo "Usuário não encontrado.";
-            exit;
+            exit();
         }
     } else {
         echo "Erro ao executar a consulta: " . $stmt->error;
-        exit;
+        exit();
     }
+    $stmt->close();
 }
-    // Fecha o statement
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Cadastro de Cliente</title>
+    <title>Editar Cliente</title>
     <style>
-        body {
-            background-image: url('./images/background.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center center;
-        background-attachment: fixed;
-        color: white;
-        }
-        h1{
-            text-align: center;
-        }
-        header{
-            background-color: palevioletred;
-             padding: 10px 0;
-            text-align: center;
-            }
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #475D7F;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 16px;
-            box-sizing: border-box;
-        }
-
-        input[type="submit"] {
-            background-color: #45e05f;
-            color: white;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #435dd1;
-        }
-        header{
-    background-color: palevioletred;
-    padding: 10px 0;
-    text-align: center;
-    }
-
-    nav ul{
-    list-style: none;
-
-    }
-
-        nav ul li{
-    display: inline;
-    margin-right: 20px;
-    }
-    nav ul li a{
-    text-decoration: none;
-    color: #151414;
-    font-weight: bold;
-    }
-    .saida {
-    padding: 20px;
-    border-radius: 100px;
-    background-color: #5c79a5;
-    color:rgba(255, 255, 255, 0.801);
-    border-style: none;
-    font-size: 25px;
-}
-
-.saida:hover {
-    background-color: #475D7F;
-}
-
+        /* Seus estilos CSS aqui */
     </style>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('cpf').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '').slice(0, 11);
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+                e.target.value = value;
+            });
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('cpf').addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length <= 11) {
-            value = value.replace(/(\d{3})(\d)/, '$1.$2');
-            value = value.replace(/(\d{3})(\d)/, '$1.$2');
-            value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-        }
-        e.target.value = value;
-    });
-
-    document.getElementById('telefone').addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length <= 11) {
-            value = value.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
-        }
-        e.target.value = value;
-    });
-});
-
-</script>
-
+            document.getElementById('telefone').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '').slice(0, 11);
+                value = value.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
+                e.target.value = value;
+            });
+        });
+    </script>
 </head>
 <body>
-    
-<?php if ($logado){ ?>
-                <h1>Editor de Cliente<?php } else{ 
-                header("location: Login.php");} ?></u></h1>
-    <body>
-    <a href="modcliente1.php" class="saida">Voltar</a>
+    <header>
+        <h1>Editar Cliente</h1>
+        <a href="modcliente1.php" class="saida">Voltar</a>
+    </header>
+
     <div class="box">
         <form action="saveEdit.php" method="POST">
             <fieldset>
                 <legend><b>Editar Cliente</b></legend>
-                <br>
+                
                 <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
+                <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($nome); ?>" required>
 
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" required>
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required readonly>
 
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required>
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" value="<?php echo htmlspecialchars($senha); ?>" required>
 
-        <label for="cpf">CPF:</label>
-        <input name="cpf" type="text" id="cpf" class="inputs" placeholder="000.000.000-00" maxlength="14" required>
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" value="<?php echo htmlspecialchars($cpf); ?>" maxlength="14" required readonly>
 
-        <label for="telefone">Telefone:</label>
-        <input name="telefone" type="tel" id="telefone" class="inputs" placeholder="(00) 00000-0000" maxlength="15" required>
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" value="<?php echo htmlspecialchars($telefone); ?>" maxlength="15" required>
 
-        <label for="tipo">tipo:</label>
-        <select id="tipo" name="tipo" required>
-            <option value="" disabled selected>Selecione o tipo</option>
-            <option value="0">0</option>
-            <option value="1">1</option>
-           
-        </select>
+                <label for="tipo">Tipo:</label>
+                <select id="tipo" name="tipo" required>
+                    <option value="" disabled>Selecione o tipo</option>
+                    <option value="0" <?php echo $tipo == 0 ? 'selected' : ''; ?>>0</option>
+                    <option value="1" <?php echo $tipo == 1 ? 'selected' : ''; ?>>1</option>
+                </select>
 
-        <br><br>
-				<input type="hidden" name="email" value=<?php echo $email;?>>
-                <input type="submit" name="update" id="submit">
+                <input type="hidden" name="original_email" value="<?php echo htmlspecialchars($email); ?>">
+                <input type="submit" name="update" value="Atualizar">
             </fieldset>
         </form>
     </div>
-
+</body>
 </html>
