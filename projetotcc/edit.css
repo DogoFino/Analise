@@ -11,9 +11,35 @@ body {
     background-attachment: fixed;
 }
 
-/* Centralizando o conteúdo */
+/* Estilo do cabeçalho */
+header {
+    text-align: center;
+    margin-top: 20px;
+}
+
+header h1 {
+    color: white;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+/* Estilo para o link de voltar */
+.saida {
+    display: inline-block;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.saida:hover {
+    text-decoration: underline;
+}
+
+/* Centralizando o formulário de edição */
 .box {
-    width: 60%;
+    width: 50%;
     margin: 50px auto;
     background-color: #fff;
     padding: 30px;
@@ -21,6 +47,7 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Estilo do campo de legend */
 legend {
     font-size: 24px;
     font-weight: bold;
@@ -37,78 +64,18 @@ label {
     display: block;
 }
 
-/* Estilo dos campos de entrada */
-input[type="text"], select, input[type="file"] {
+/* Estilo dos campos de entrada (inputs) */
+input[type="text"], input[type="email"], input[type="password"], input[type="tel"], select {
     width: 100%;
     padding: 10px;
     margin: 10px 0 20px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
+    box-sizing: border-box; /* Inclui o padding e a borda dentro da largura */
 }
 
 /* Estilo do botão de envio */
-input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s ease;
-}
-
-input[type="submit"]:hover {
-    background-color: #45a049;
-}
-
-header {
-    text-align: center;
-    margin-top: 20px;
-}
-
-header h1 {
-    color: white;
-    font-size: 36px;
-    margin-bottom: 10px;
-}
-
-/* Estilo do link para voltar */
-.saida {
-    display: inline-block;
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 20px;
-    margin-top: 20px;
-}
-
-.saida:hover {
-    text-decoration: underline;
-}
-
-/* Estilo de elementos de erro ou mensagem */
-.error {
-    color: red;
-    font-size: 16px;
-    margin-top: 10px;
-    text-align: center;
-}
-
-/* Estilo geral de todos os inputs e selects */
-input[type="text"], select, input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0 20px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    box-sizing: border-box; /* Garante que a largura e altura incluam padding e borda */
-}
-
-/* Para garantir que o botão de envio também não ultrapasse a largura da div */
 input[type="submit"] {
     background-color: #4CAF50;
     color: white;
@@ -123,5 +90,52 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Estilo para os campos readonly (CPF) */
+input[readonly] {
+    background-color: #f1f1f1;
+    cursor: not-allowed;
+}
+
+/* Estilo para o campo de erro ou mensagem */
+.error {
+    color: red;
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Estilo para o campo select (Tipo de usuário) */
+select {
+    background-color: #fff;
+}
+
+/* Estilo para inputs de texto e senha (com um visual mais clean) */
+input[type="text"], input[type="email"], input[type="password"], input[type="tel"], select {
+    font-size: 16px;
+}
+
+/* Estilo para o formulário, incluindo o layout */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Estilo para o formulário de edição */
+form input[type="submit"] {
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
     background-color: #45a049;
 }

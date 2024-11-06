@@ -88,8 +88,10 @@ if (isset($_GET['id_produto'])) {
     <title>Editar Produto</title>
 </head>
 <body>
-
-    <a href="modprod1.php" class="saida">Voltar</a>
+    <header>
+        <h1>Editar Produto</h1>
+        <a href="modprod1.php" class="saida">Voltar</a>
+    </header>
     <div class="box">
         <form action="saveEdit1.php" method="POST" enctype="multipart/form-data">
             <fieldset>

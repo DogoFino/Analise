@@ -1,0 +1,120 @@
+/* Estilo do carrinho */
+.carrinho-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    padding: 15px;
+    background-color: #475D7F;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0.9;
+}
+
+/* Estilo da imagem do produto */
+.carrinho-item img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+/* Estilo das informações do produto */
+.carrinho-item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Nome do produto */
+.carrinho-item-info h3 {
+    color: white;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Descrição do produto */
+.carrinho-item-info p {
+    color: white;
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+/* Preço do produto */
+.carrinho-item-info strong {
+    color: #FFD700;
+    font-size: 1.2rem;
+}
+
+/* Estilo do cabeçalho do carrinho */
+main h2 {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 2rem;
+    color: #fff;
+}
+
+/* Estilo geral do carrinho */
+body {
+    background-color: #1F2A44;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Botão de continuar comprando e finalizar compra */
+.carrinho-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.carrinho-buttons button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carrinho-buttons button:hover {
+    background-color: #218838;
+}
+
+.carrinho-buttons .btn-finalizar {
+    background-color: #007bff;
+}
+
+.carrinho-buttons .btn-finalizar:hover {
+    background-color: #0056b3;
+}
+
+/* Responsividade: Ajusta o layout para dispositivos móveis */
+@media (max-width: 768px) {
+    .carrinho-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .carrinho-item img {
+        width: 100%;
+        height: auto;
+    }
+
+    .carrinho-item-info {
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .carrinho-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
