@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <h1>Editor de Cliente<?php } else{ 
                 header("location: Login.php");} ?></u></h1>
     <body>
-    <a href="adm.php" class="saida">Voltar</a>
+    <a href="modcliente1.php" class="saida">Voltar</a>
     <div class="box">
         <form action="saveEdit.php" method="POST">
             <fieldset>

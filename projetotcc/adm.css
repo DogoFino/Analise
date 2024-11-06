@@ -59,10 +59,12 @@ body {
     color: rgba(255, 255, 255, 0.801);
     border: none;
     position: relative;
+    transition: transform 0.2s;
 }
 
 .botao1:hover {
     background-color: #475D7F;
+    transform: scale(1.10);
 }
 
 .embaixo-cabe{
@@ -78,10 +80,12 @@ body {
     border: none;
     position: relative;
     top: 5px;
+    transition: transform 0.2s;
 }
 
 .botao2:hover {
     background-color: #475D7F;
+    transform: scale(1.10);
 }
 
 .botao3{
@@ -91,16 +95,18 @@ body {
     border: none;
     position: relative;
     top: 10px;
+    transition: transform 0.2s;
 }
 
 .botao3:hover {
     background-color: #475D7F;
+    transform: scale(1.10);
 }
 
 .box-search {
     position: absolute;
-    left: 600px;
-    top: 200px;
+    left: 500px;
+    top: 150px;
     display: flex;
     justify-content: center;
     gap: 0.1%;
@@ -114,16 +120,30 @@ body {
     background-color: #475D7F;
     color: rgba(255, 255, 255, 0.801);
     border: none;
-    width: 800px;
+    width: 1050px;
     border-radius: 20px;
+    padding-right: 50px;
+    word-break: break-all;
+}
+
+#botao41 {
+    background-color: #475D7F;
+    color: rgba(255, 255, 255, 0.801);
+    border: none;
+    width: 1050px;
+    height: 300px;
+    border-radius: 20px;
+    padding-right: 50px;
+    word-break: break-all;
 }
 
 #tabelaa {
     padding: 05%;
-    width: 100%;
+    width: 105%;
     font-size: 20px;
     justify-content: space-between;
     gap: 20px;
+    word-break: break-all;
 }
 
 .negocio {
